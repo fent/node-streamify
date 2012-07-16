@@ -63,10 +63,10 @@ describe('Create a writable Streamify', function() {
     stream.on('error', done);
 
     fileReadStream.on('end', function() {
-      var inputData = fs.readFileSync(input, 'utf8');
-      var outputData = fs.readFileSync(output, 'utf8');
+      var inputData = fs.readFileSync(input);
+      var outputData = fs.readFileSync(output);
       fs.unlink(output);
-      assert.equal(inputData, outputData);
+      assert.deepEqual(inputData, outputData);
       done();
     });
 
