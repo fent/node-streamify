@@ -1,6 +1,6 @@
 # node-streamify [![Build Status](https://secure.travis-ci.org/fent/node-streamify.png)](http://travis-ci.org/fent/node-streamify)
 
-Streamify helps you easily provide a streaming interface into your modules.
+Streamify helps you easily provide a streaming interface for your code.
 
 
 # Usage
@@ -14,7 +14,10 @@ exports.doSomething = function doSomething() {
 
   request(url1, function(err, res, body) {
     // do something with `body`
-    request(url2);
+
+    // once the actual stream you want to return is ready,
+    // call `stream.resolve()`
+    stream.resolve(request(url2));
   });
 
   // your function can return back a stream!!
