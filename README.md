@@ -6,11 +6,11 @@ Streamify helps you easily provide a streaming interface for your code.
 # Usage
 
 ```js
-var Streamify = require('streamify');
+var streamify = require('streamify');
 var request   = require('request');
 
 exports.doSomething = function doSomething() {
-  var stream = new Streamify();
+  var stream = streamify();
 
   request(url1, function(err, res, body) {
     // do something with `body`
@@ -30,17 +30,22 @@ exports.doSomething().pipe(anotherStream);
 
 
 # API
-### new Streamify([options])
+### streamify([options])
 
-Creates an instance of a stream. `options` can be
+Returns an instance of a stream. `options` can be
 
 * `superCtor` - The object from which it inherits. Defaults to `require('stream').Stream`. Sometimes you may want to use this if your stream might be checked with the `instanceof` operator against objects such as `http.ServerResponse`.
 * `readable` - Defaults to `true`.
 * `writable` - Defaults to `true`.
 
-### Streamify#resolve(stream)
+### Stream#resolve(stream)
 
 Must be called only once when the actual stream you are proxying to becomes available after an asynchronous operation.
+
+### Event: 'queueCall'
+`function (method, args) { }`
+
+Emitted when a stream method that has been queued is called. Default queued methods are those in `superCtor.prototype` and `destroy`, `write`, `end`, `pause`, `resume`, and `setEncoding`.
 
 
 # Install

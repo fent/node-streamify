@@ -1,4 +1,4 @@
-var Streamify = require('..')
+var streamify = require('..')
   , assert    = require('assert')
   , path      = require('path')
   , fs        = require('fs')
@@ -11,9 +11,9 @@ var input = path.join(__dirname, 'files', 'input1.txt')
   ;
 
 
-describe('Create a readable Streamify', function() {
+describe('Create a readable stream', function() {
   describe('with default `superCtor`', function() {
-    var stream = new Streamify({ writable: false });
+    var stream = streamify({ writable: false });
 
     it('Is an instance of `Stream`', function() {
       assert.ok(!!(stream instanceof Stream));
@@ -40,7 +40,7 @@ describe('Create a readable Streamify', function() {
   });
 
   describe('with custom `superCtor` as `fs.WriteStream`', function() {
-    var stream = new Streamify({ superCtor: fs.WriteStream, writable: false });
+    var stream = streamify({ superCtor: fs.WriteStream, writable: false });
 
     it('Is an instance of `Stream`', function() {
       assert.ok(!!(stream instanceof Stream));
@@ -53,20 +53,29 @@ describe('Create a readable Streamify', function() {
 });
 
 
-describe('Create a writable Streamify', function() {
+describe('Create a writable stream', function() {
   it('Can pipe to it from a readable stream', function(done) {
     var fileReadStream = fs.createReadStream(input, { bufferSize: 1024 });
-    var stream = new Streamify();
+    var stream = streamify();
     fileReadStream.pipe(stream);
 
     fileReadStream.on('error', done);
     stream.on('error', done);
 
+    var queueCalled = false;
+    stream.once('queueCall', function(method, args) {
+      queueCalled = true;
+      assert.equal(method, 'write');
+      assert.ok(Buffer.isBuffer(args[0]));
+    });
+
     fileReadStream.on('end', function() {
       var inputData = fs.readFileSync(input);
       var outputData = fs.readFileSync(output);
       fs.unlink(output);
+
       assert.deepEqual(inputData, outputData);
+      assert.ok(queueCalled);
       done();
     });
 
