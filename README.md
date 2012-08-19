@@ -43,7 +43,8 @@ Returns an instance of a stream. `options` can be
 Must be called only once when the actual stream you are proxying to becomes available after an asynchronous operation.
 
 ### Event: 'queueCall'
-`function (method, args) { }`
+`string` - Method name.
+`Object` - Arguments object.
 
 Emitted when a stream method that has been queued is called. Default queued methods are those in `superCtor.prototype` and `destroy`, `write`, `end`, `pause`, `resume`, and `setEncoding`.
 
