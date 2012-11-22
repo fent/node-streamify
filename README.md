@@ -42,6 +42,10 @@ Returns an instance of a stream. `options` can be
 
 Must be called only once when the actual stream you are proxying to becomes available after an asynchronous operation.
 
+### Stream#unresolve()
+
+Can be used to unbind a a resolved stream to later call `resolve()` again.
+
 ### Event: 'queueCall'
 * `string` - Method name.
 * `Object` - Arguments object.
