@@ -35,6 +35,7 @@ describe('Pipe to a writable stream', function() {
     var fileReadStream = fs.createReadStream(input, { bufferSize: 1024 });
     var writeStream = through();
     var stream = streamify();
+    fileReadStream.resume();
     fileReadStream.pipe(stream);
 
     var queueCalled = false;
