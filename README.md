@@ -46,11 +46,21 @@ Must be called only once when the actual stream you are proxying to becomes avai
 
 Can be used to unbind a a resolved stream to later call `resolve()` again.
 
-### Event: 'queueCall'
-* `string` - Method name.
-* `Object` - Arguments object.
+### Stream#addSource(stream)
 
-Emitted when a stream method that has been queued is called. Default queued methods are those in `superCtor.prototype` and `destroy`, `write`, `end`, `pause`, `resume`, and `setEncoding`.
+Add a source readable stream.
+
+### Stream#removeSource()
+
+Remove previously added source stream.
+
+### Stream#addDest(stream)
+
+Add a destination writable stream.
+
+### Stream#removeDest()
+
+Remove a previously added destination stream.
 
 
 # Install
