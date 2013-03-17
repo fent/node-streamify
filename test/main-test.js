@@ -17,8 +17,11 @@ describe('Create a readable stream', function() {
       }, 10);
 
       var length = 0;
-      stream.on('data', function(data) {
-        length += data.length;
+      stream.on('readable', function() {
+        var data = stream.read();
+        if (data.length) {
+          length += data.length;
+        }
       });
 
       stream.on('error', done);
@@ -35,14 +38,16 @@ describe('Create a readable stream', function() {
         stream.resolve(rs);
 
         var length = 0;
-        stream.on('data', function onData(data) {
-          length += data.length;
-          if (length >= 10000) {
-            stream.unresolve();
-            rs.destroy();
-            setTimeout(createSecondStream, 10);
-            stream.removeListener('data', onData);
-            stream.pause();
+        stream.on('readable', function onreadable() {
+          var data = stream.read();
+          if (data) {
+            length += data.length;
+            if (length >= 10000) {
+              stream.unresolve();
+              rs.destroy();
+              setTimeout(createSecondStream, 10);
+              stream.removeListener('readable', onreadable);
+            }
           }
         });
 
@@ -50,8 +55,11 @@ describe('Create a readable stream', function() {
           stream.resolve(fs.createReadStream(input, { bufferSize: 1024 }));
 
           length = 10000;
-          stream.on('data', function onData2(data) {
-            length += data.length;
+          stream.on('readable', function() {
+            var data = stream.read();
+            if (data) {
+              length += data.length;
+            }
           });
         }
 
