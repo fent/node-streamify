@@ -50,3 +50,25 @@ describe('Pipe to a writable stream', function() {
     }, 10);
   });
 });
+
+
+describe('Pipe to itself', function() {
+  it('Everything from source stream written to dest stream', function(done) {
+    var readStream = fs.createReadStream(input);
+    var writeStream = new PassThrough();
+    var stream = streamify();
+    stream.pipe(stream);
+
+    streamEqual(readStream, writeStream, function(err, equal) {
+      if (err) return done(err);
+
+      assert.ok(equal);
+      done();
+    });
+
+    setTimeout(function() {
+      stream.addSource(fs.createReadStream(input));
+      stream.addDest(writeStream);
+    }, 10);
+  });
+});
