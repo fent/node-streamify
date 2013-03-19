@@ -36,7 +36,7 @@ describe('Pipe to a writable stream', function() {
     var readStream = fs.createReadStream(input, { bufferSize: 1024 });
     var writeStream = new PassThrough();
     var stream = streamify();
-    fs.createReadStream(input, { bufferSize: 1024 }).pipe(stream);
+    readStream.pipe(stream);
 
     streamEqual(readStream, writeStream, function(err, equal) {
       if (err) return done(err);
