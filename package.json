@@ -2,7 +2,7 @@
   "name": "streamify",
   "description": "Streamify helps you easily provide a streaming interface for code.",
   "keywords": ["stream", "input", "output", "api"],
-  "version": "0.1.3",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/fent/node-streamify.git"
