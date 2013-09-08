@@ -3,7 +3,6 @@ var assert    = require('assert');
 var path      = require('path');
 var fs        = require('fs');
 
-
 var input = path.join(__dirname, 'files', 'input1.txt');
 
 
