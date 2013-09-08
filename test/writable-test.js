@@ -31,7 +31,8 @@ describe('Create a writable stream', function() {
     setTimeout(function() {
       var ws = fs.createWriteStream(output2);
       stream.resolve(ws);
-      ws.on('finish', function() {
+      
+      ws.on('close', function onfinish() {
         fs.unlink(output2, function() {});
         done();
       });
