@@ -4,6 +4,7 @@ var path      = require('path');
 var fs        = require('fs');
 
 var output1 = path.join(__dirname, 'files', 'output1.txt');
+var output2 = path.join(__dirname, 'files', 'output2.txt');
 
 
 describe('Create a writable stream', function() {
@@ -21,5 +22,19 @@ describe('Create a writable stream', function() {
         done();
       });
     });
+  });
+
+  it('Ends underlying write stream when streamify ends', function(done) {
+    var stream = streamify({ readable: false });
+    stream.end('the only one');
+
+    setTimeout(function() {
+      var ws = fs.createWriteStream(output2);
+      stream.resolve(ws);
+      ws.on('finish', function() {
+        fs.unlink(output2, function() {});
+        done();
+      });
+    }, 50);
   });
 });
