@@ -18,7 +18,7 @@ describe('Create a readable stream', function() {
       var length = 0;
       stream.on('readable', function() {
         var data = stream.read();
-        if (data.length) {
+        if (data && data.length) {
           length += data.length;
         }
       });
