@@ -21,8 +21,7 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "stream-equal": "~0.1.0",
-    "through": "~1.1.2"
+    "stream-equal": "~0.1.0"
   },
   "licenses": [ {
     "type": "MIT",
