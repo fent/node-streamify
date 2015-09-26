@@ -1,8 +1,13 @@
 {
   "name": "streamify",
   "description": "Streamify helps you easily provide a streaming interface for code.",
-  "keywords": ["stream", "input", "output", "api"],
-  "version": "0.2.4",
+  "keywords": [
+    "stream",
+    "input",
+    "output",
+    "api"
+  ],
+  "version": "0.2.5",
   "repository": {
     "type": "git",
     "url": "git://github.com/fent/node-streamify.git"
@@ -22,8 +27,10 @@
     "mocha": "*",
     "stream-equal": "~0.1.0"
   },
-  "licenses": [ {
-    "type": "MIT",
-    "url" : "http://github.com/fent/node-streamify/raw/master/LICENSE"
-  }]
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/fent/node-streamify/raw/master/LICENSE"
+    }
+  ]
 }
