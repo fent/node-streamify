@@ -16,8 +16,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "hashish": "~0.0.4",
-    "readable-stream": "~1.1.9"
+    "hashish": "~0.0.4"
   },
   "devDependencies": {
     "mocha": "*",
