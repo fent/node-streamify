@@ -1,7 +1,7 @@
 var streamify = require('..');
 var assert    = require('assert');
-var Duplex    = require('readable-stream').Duplex;
-var Readable  = require('readable-stream').Readable;
+var Duplex    = require('stream').Duplex;
+var Readable  = require('stream').Readable;
 
 
 describe('Create a stream', function() {

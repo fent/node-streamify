@@ -3,7 +3,7 @@ var assert      = require('assert');
 var path        = require('path');
 var fs          = require('fs');
 var streamEqual = require('stream-equal');
-var PassThrough = require('readable-stream').PassThrough;
+var PassThrough = require('stream').PassThrough;
 
 
 var input = path.join(__dirname, 'files', 'input1.txt');
