@@ -1,7 +1,8 @@
-# node-streamify [![Build Status](https://secure.travis-ci.org/fent/node-streamify.png)](http://travis-ci.org/fent/node-streamify)
+# node-streamify
 
 Streamify helps you easily provide a streaming interface for your code.
 
+[![Build Status](https://secure.travis-ci.org/fent/node-streamify.png)](http://travis-ci.org/fent/node-streamify) [![Dependency Status](https://gemnasium.com/fent/node-streamify.svg)](https://gemnasium.com/fent/node-streamify)
 
 # Usage
 
