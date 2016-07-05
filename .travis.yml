@@ -9,10 +9,3 @@ notifications:
     on_success: change
     on_failure: change
 sudo: false
-deploy:
-  provider: npm
-  email: roly426@gmail.com
-  api_key:
-    secure: VZIaSz6JnD6oBZAyFiIDWuG6VwtsRLJk9oYv/k1izDx9WKuWpWYpzeDjfePItWyJrvj2u+5uxJn1/ipb2QzKhcXCtF9jPHBU3HDGQzkd09sQVM7fm5UsqLgVC2yR3ZGWWYUJ/raIfnpcQk4f6gXAOSpzrzx75yFLToCrhy9M4N0=
-  on:
-    tags: true
