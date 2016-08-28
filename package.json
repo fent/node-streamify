@@ -15,7 +15,7 @@
   "author": "fent (https://github.com/fent)",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "mocha -R spec test/*-test.js"
+    "test": "istanbul cover node_modules/.bin/_mocha -- test/*-test.js"
   },
   "directories": {
     "lib": "./lib"
@@ -24,6 +24,7 @@
     "hashish": "~0.0.4"
   },
   "devDependencies": {
+    "istanbul": "*",
     "mocha": "*",
     "stream-equal": "~0.1.0"
   },

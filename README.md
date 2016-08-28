@@ -2,7 +2,9 @@
 
 Streamify helps you easily provide a streaming interface for your code.
 
-[![Build Status](https://secure.travis-ci.org/fent/node-streamify.png)](http://travis-ci.org/fent/node-streamify) [![Dependency Status](https://gemnasium.com/fent/node-streamify.svg)](https://gemnasium.com/fent/node-streamify)
+[![Build Status](https://secure.travis-ci.org/fent/node-streamify.svg)](http://travis-ci.org/fent/node-streamify)
+[![Dependency Status](https://gemnasium.com/fent/node-streamify.svg)](https://gemnasium.com/fent/node-streamify)
+[![codecov](https://codecov.io/gh/fent/node-streamify/branch/master/graph/badge.svg)](https://codecov.io/gh/fent/node-streamify)
 
 # Usage
 
