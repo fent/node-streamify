@@ -26,7 +26,7 @@
   "devDependencies": {
     "istanbul": "*",
     "mocha": "*",
-    "stream-equal": "~0.1.0"
+    "stream-equal": "~1.0.0"
   },
   "license": "MIT"
 }
