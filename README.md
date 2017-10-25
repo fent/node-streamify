@@ -9,25 +9,25 @@ Streamify helps you easily provide a streaming interface for your code.
 # Usage
 
 ```js
-var streamify = require('streamify');
-var request   = require('request');
+const Streamify = require('streamify');
+const request   = require('request');
 
-exports.doSomething = function doSomething() {
-  var stream = streamify();
+exports.doSomething = () => {
+  var stream = new Streamify();
 
-  request(url1, function(err, res, body) {
-    // do something with `body`
+  request(url1, (err, res, body) => {
+    // Do something with `body`.
 
-    // once the actual stream you want to return is ready,
-    // call `stream.resolve()`
+    // Once the actual stream you want to return is ready,
+    // call `stream.resolve()`.
     stream.resolve(request(url2));
   });
 
-  // your function can return back a stream!!
+  // Your function can return back a stream!!
   return stream;
 }
 
-// because `doSomething()` returns a stream, it can be piped
+// Because `doSomething()` returns a stream, it can be piped.
 exports.doSomething().pipe(anotherStream);
 ```
 
