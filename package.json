@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "istanbul": "^0.4.5",
-    "mocha": "^4.0.1",
+    "mocha": "^5.1.0",
     "stream-equal": "~1.1.0"
   },
   "engines": {
