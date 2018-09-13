@@ -9,11 +9,11 @@ Streamify helps you easily provide a streaming interface for your code.
 # Usage
 
 ```js
-const Streamify = require('streamify');
+const streamify = require('streamify');
 const request   = require('request');
 
 exports.doSomething = () => {
-  let stream = new Streamify();
+  let stream = streamify();
 
   request(url1, (err, res, body) => {
     // Do something with `body`.
