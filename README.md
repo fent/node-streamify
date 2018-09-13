@@ -13,7 +13,7 @@ const Streamify = require('streamify');
 const request   = require('request');
 
 exports.doSomething = () => {
-  var stream = new Streamify();
+  let stream = new Streamify();
 
   request(url1, (err, res, body) => {
     // Do something with `body`.
