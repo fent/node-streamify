@@ -17,8 +17,7 @@ describe('Pipe from a readable stream', () => {
     stream.pipe(writeStream);
 
     streamEqual(readStream, writeStream, (err, equal) => {
-      if (err) return done(err);
-
+      assert.ifError(err);
       assert.ok(equal);
       done();
     });
@@ -38,8 +37,7 @@ describe('Pipe to a writable stream', () => {
     fs.createReadStream(input, { bufferSize: 1024 }).pipe(stream);
 
     streamEqual(readStream, writeStream, (err, equal) => {
-      if (err) return done(err);
-
+      assert.ifError(err);
       assert.ok(equal);
       done();
     });
@@ -58,8 +56,7 @@ describe('Pipe to itself', () => {
     stream.pipe(stream);
 
     streamEqual(readStream, writeStream, (err, equal) => {
-      if (err) return done(err);
-
+      assert.ifError(err);
       assert.ok(equal);
       done();
     });
