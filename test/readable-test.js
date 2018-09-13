@@ -7,17 +7,16 @@ const input = path.join(__dirname, 'files', 'input1.txt');
 
 
 describe('Create a readable stream', () => {
-  var stream = streamify({ writable: false });
-
-  describe('pipe and resolve() after an async operation', () => {
-    it('receives all `data` and `end` events', (done) => {
+  describe('Pipe and resolve() after an async operation', () => {
+    it('Receives all `data` and `end` events', (done) => {
+      const stream = streamify({ writable: false });
       setTimeout(() => {
         stream.resolve(fs.createReadStream(input, { bufferSize: 1024 }));
       }, 10);
 
-      var length = 0;
+      let length = 0;
       stream.on('readable', () => {
-        var data = stream.read();
+        const data = stream.read();
         if (data && data.length) {
           length += data.length;
         }
@@ -31,36 +30,36 @@ describe('Create a readable stream', () => {
     });
 
     describe('unresolve() and resolve() again', () => {
-      it('keeps receiving `data` events from new stream', (done) => {
-        var stream = streamify({ writable: false });
-        var rs = fs.createReadStream(input, { bufferSize: 1024 });
+      it('Keeps receiving `data` events from new stream', (done) => {
+        const stream = streamify({ writable: false });
+        const rs = fs.createReadStream(input, { bufferSize: 1024 });
         stream.resolve(rs);
 
-        var length = 0;
-        stream.on('readable', function onreadable() {
-          var data = stream.read();
+        let length = 0;
+        const onreadable = () => {
+          const data = stream.read();
           if (data) {
             length += data.length;
             if (length >= 10000) {
               stream.unresolve();
               rs.destroy();
-              setTimeout(createSecondStream, 10);
+              setTimeout(() => {
+                stream.resolve(fs.createReadStream(input, {
+                  bufferSize: 1024
+                }));
+                length = 10000;
+                stream.on('readable', () => {
+                  const data = stream.read();
+                  if (data) {
+                    length += data.length;
+                  }
+                });
+              }, 10);
               stream.removeListener('readable', onreadable);
             }
           }
-        });
-
-        function createSecondStream() {
-          stream.resolve(fs.createReadStream(input, { bufferSize: 1024 }));
-
-          length = 10000;
-          stream.on('readable', () => {
-            var data = stream.read();
-            if (data) {
-              length += data.length;
-            }
-          });
-        }
+        };
+        stream.on('readable', onreadable);
 
         stream.on('error', done);
         stream.on('end', () => {

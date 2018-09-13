@@ -9,15 +9,15 @@ const output2 = path.join(__dirname, 'files', 'output2.txt');
 
 describe('Create a writable stream', () => {
   it('Does not throw "write after end" error"', (done) => {
-    var stream = streamify({ readable: false });
+    const stream = streamify({ readable: false });
     stream.resolve(fs.createWriteStream(output1));
+    after((done) => fs.unlink(output1, done));
     stream.write('hello\n');
     stream.end('world!');
 
     stream.on('finish', () => {
       fs.readFile(output1, 'utf8', (err, data) => {
-        if (err) return done(err);
-        fs.unlink(output1, () => {});
+        assert.ifError(err);
         assert.equal(data, 'hello\nworld!');
         done();
       });
@@ -25,17 +25,14 @@ describe('Create a writable stream', () => {
   });
 
   it('Ends underlying write stream when streamify ends', (done) => {
-    var stream = streamify({ readable: false });
+    const stream = streamify({ readable: false });
     stream.end('the only one');
 
     setTimeout(() => {
-      var ws = fs.createWriteStream(output2);
+      const ws = fs.createWriteStream(output2);
+      after((done) => fs.unlink(output2, done));
       stream.resolve(ws);
-      
-      ws.on('close', () => {
-        fs.unlink(output2, () => {});
-        done();
-      });
+      ws.on('close', done);
     }, 50);
   });
 });
