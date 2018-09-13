@@ -37,7 +37,6 @@ exports.doSomething().pipe(anotherStream);
 
 Returns an instance of a stream. `options` can be
 
-* `superCtor` - The object from which it inherits. Defaults to `require('stream').Stream`. Sometimes you may want to use this if your stream might be checked with the `instanceof` operator against objects such as `http.ServerResponse`.
 * `readable` - Defaults to `true`.
 * `writable` - Defaults to `true`.
 
