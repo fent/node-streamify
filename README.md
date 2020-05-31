@@ -1,5 +1,20 @@
 # node-streamify
 
+### * Abandoned *
+
+Use a passthrough stream
+
+```js
+import { PassThrough } from 'stream';
+
+export myCoolFunction = () => {
+  let stream = new PassThrough();
+  asyncFunc((err, otherStream) => {
+    otherStream.pipe(stream);
+  });
+}
+```
+
 Streamify helps you easily provide a streaming interface for your code.
 
 [![Dependency Status](https://david-dm.org/fent/node-streamify.svg)](https://david-dm.org/fent/node-streamify)
@@ -24,7 +39,7 @@ exports.doSomething = () => {
 
   // Your function can return back a stream!!
   return stream;
-}
+};
 
 // Because `doSomething()` returns a stream, it can be piped.
 exports.doSomething().pipe(anotherStream);
